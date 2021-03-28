@@ -1,0 +1,12 @@
+[14-bit thermocouple temperature data] [res] [fault bit] [12-bit internal temperature data] [res] [scv bit] [scg bit] [oc bit]
+
+200ee200
+00100000000011 1 0 111000100000 0 000
+
+301cc001
+00110000000111 0 0 110000000000 0 001
+
+501cc401
+01010000000111 0 0 110001000000 0 001
+
+

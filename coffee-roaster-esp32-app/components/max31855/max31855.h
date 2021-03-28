@@ -1,33 +1,32 @@
 #ifndef COMPONENTS_MAX31855_H
 #define COMPONENTS_MAX31855_H
 
-#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-typedef enum
-{
-    MAX31855_OK = 0,
-    MAX31855_NO_THERMOCOUPLE = -1,
-    MAX31855_THERMOCOUPLE_SHORT_GND = -2,
-    MAX31855_THERMOCOUPLE_SHORT_VCC = -3,
-} max31855_error_t;
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "esp_system.h"
+#include "driver/spi_master.h"
+#include "soc/gpio_struct.h"
+#include "driver/gpio.h"
 
-/**
- * @brief               Initialize the sensor.
- * 
- * @param   cs_pin      GPIO to use for chip select.
- * @param   clk_pin     GPIO to use for clock.
- * @param   do_pin      GPIO to use for data out.
- */
-void max31855_init(uint8_t cs_pin, uint8_t clk_pin, uint8_t do_pin);
+#define PIN_NUM_MISO 3
+#define PIN_NUM_CLK 5
+#define PIN_NUM_CS 4
 
-/**
- * @brief                           Read data from MAX31855.
- * 
- * @param   temp_thermocouple       Pointer to int16_t for thermocouple temperature. Value x10 (e.g. 982 = 98.2).
- * @param   temp_internal           Pointer to int16_t for internal reference temperature. Value x100 (e.g. 2337 = 23.37).
- * 
- * @return                          Returns MAX_OK (0) on success or error (negative value, see max31855_error_t).   
- */ 
-max31855_error_t max31855_readtemp(int16_t *temp_thermocouple, int16_t *temp_internal);
+typedef struct max31855_cfg_t {
+    spi_device_handle_t  spi;
+    double thermocouple_temp;
+    uint8_t fault_bit;
+    double internal_temp;
+    uint8_t scv_bit;
+    uint8_t scg_bit;
+    uint8_t oc_bit;
+} max31855_cfg_t;
+
+max31855_cfg_t max31855_init();
 
 #endif
+
