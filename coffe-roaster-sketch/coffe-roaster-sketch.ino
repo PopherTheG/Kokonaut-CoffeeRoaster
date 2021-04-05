@@ -90,6 +90,8 @@ void loop() {
   float internal_temp = thermocouple.readInternal();
   float thermocouple_temp = thermocouple.readCelsius();
   Serial.print(internal_temp); Serial.print("  "); Serial.println(thermocouple_temp);
+  Serial.print(thermocouple.readInternal()); Serial.print("  "); Serial.println(thermocouple.readCelsius());
+  Serial.println(" ");
   if (isnan(thermocouple_temp)) {
     Serial.println("Something wrong with thermocouple");
   }
