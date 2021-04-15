@@ -70,7 +70,12 @@
                 "${IDF_PATH}/components/bt/host/nimble/nimble/nimble/host/services/gap/include",
                 "${IDF_PATH}/components/bt/host/nimble/nimble/nimble/host/services/gatt/include",
                 "C:/cygwin64/lib/gcc/x86_64-pc-cygwin/10/include",
-                "C:/esp/esp-idf/components/freertos/xtensa/include"
+                "C:/esp/esp-idf/components/freertos/xtensa/include",
+                "C:/esp/esp-idf/components/esp_timer/include",
+                "C:/esp/esp-idf/components/soc/soc/include",
+                "C:/esp/esp-idf/components/soc/soc/esp32/include",
+                "C:/esp/esp-idf/components/soc/src/esp32/include",
+                "C:/esp/esp-idf/components/esp_system/include"
             ],
             "defines": [],
             "cStandard": "c11",
