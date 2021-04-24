@@ -25,7 +25,6 @@
 Adafruit_MAX31855 thermocouple(MAXCLK, MAXCS, MAXDO);
 
 BLECharacteristic *pCharacteristic;
-char tempDataBuf[20];
 bool deviceConnected = false;
 
 void setup() {
@@ -67,7 +66,7 @@ void loop() {
   /* basic readout test, just print the current temp */
   Serial.print("Internal Temp = ");
   Serial.println(thermocouple.readInternal());
-
+  char tempDataBuf[50];
   double c = thermocouple.readCelsius();
   if (isnan(c)) {
     Serial.println("Something wrong with thermocouple!");
@@ -77,7 +76,7 @@ void loop() {
   }
   Serial.print("F = ");
   Serial.println(thermocouple.readFahrenheit());
-  sprintf(tempDataBuf, "%lf %lf", thermocouple.readInternal(), thermocouple.readCelsius());
+  sprintf(tempDataBuf, "\"tc1\": %lf,\"tc2\": %lf", thermocouple.readCelsius(), thermocouple.readCelsius());
   pCharacteristic->setValue(tempDataBuf);
   delay(1000);
 }
